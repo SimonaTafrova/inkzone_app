@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" class="h-100" data-bs-theme="auto">
+
+<head th:replace = "~{fragments/head}"></head>
+  <body class="d-flex h-100 text-center text-bg-dark">
+
+
+    
+    <div class="container-fluid d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header th:replace="~{fragments/navigation}"></header>
+
+  <main class="form-signin w-100 m-auto">
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+              <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+      
+                  <div class="mb-md-5 mt-md-4 pb-5">
+      
+                    <h1 class="fw-bold mb-5"><span class="badge badge-pill badge-dark">Login</span></h1>
+
+                    <form th:action="@{/users/login}"  th:method="post" class="mx-auto bg-blur rounded" >
+                
+                        <div class="form-group">
+                            <div class="label-holder text-white d-flex justify-content-center">
+                                <label for="email"  class="h3 mb-2">Email</label>
+                            </div>
+                            <input type="text"  class="form-control" id="email" name="email" />
+                        </div>
+                
+                        <div class="form-group">
+                            <div class="label-holder text-white d-flex justify-content-center">
+                                <label for="password" class="h3 mb-2">Password</label>
+                            </div>
+                            <input  id="password" name="password" type="password" min="2"
+                                    max="20" class="form-control"/>
+                        </div>
+
+                        <input name="remember-me" id="remember-me" type="checkbox" />
+                        <label for="remember-me">Remember me</label>
+
+
+                        <p th:if="${bad_credentials}"  class="errors alert alert-danger">
+                            Invalid username or password.
+                        </p>
+                
+                        <div class="button-holder d-flex justify-content-center" style="margin: 20px;">
+                            <button type="submit" class="btn btn-warning  mb-3">Login</button>
+                        </div>
+                
+                    </form>
+                      <div>
+                          <a href="/forgot_password">Forgot your password?</a>
+                      </div>
+                    
+                  </div>
+      
+                  <div>
+                    <p class="mb-0">Don't have an account? <a href="/users/register" class="text-white-50 fw-bold">Sign Up</a>
+                    </p>
+                  </div>
+      
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  </main>
+
+        <footer th:replace="~{fragments/footer}"></footer>
+
+</div>
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+</html>

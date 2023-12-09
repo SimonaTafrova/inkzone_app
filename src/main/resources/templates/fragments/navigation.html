@@ -1,0 +1,45 @@
+<header th:fragment="navigation" class="mb-auto w-100" style="background-color: black;opacity: 80%;padding: 20px;"
+        xmlns="http://www.w3.org/1999/html"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+    <div>
+        <h3 class="float-md-start mb-0">InkZone</h3>
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a class="nav-link fw-bold py-1 px-0" aria-current="page" href="/">Home</a>
+            <a class="nav-link fw-bold py-1 px-0" sec:authorize="isAnonymous()" href="/users/login">Sign in</a>
+            <a class="nav-link fw-bold py-1 px-0" sec:authorize="isAnonymous()" href="/users/register">Register</a>
+            <a class="nav-link fw-bold py-1 px-0" sec:authorize="isAuthenticated()" href="/gallery">Gallery</a>
+            <a class="nav-link fw-bold py-1 px-0" sec:authorize="hasRole('MODERATOR')" href="/tasks">Tasks</a>
+            <a class="nav-link fw-bold py-1 px-0" sec:authorize="isAuthenticated()" href="/calendar">Calendar</a>
+            <a class="nav-link fw-bold py-1 px-0" sec:authorize="hasRole('ADMIN')" href="/admin">Admin Panel</a>
+
+            <li class="nav-item dropdown" >
+                <a class="nav-link fw-bold py-1 px-3 nav-link dropdown-toggle" sec:authorize="isAuthenticated()" href="/stock"  role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Stock
+                </a>
+                <div id="navbarDropdown" class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                    <a class="dropdown-item" href="/stock/needles">Needles</a>
+                    <a class="dropdown-item" href="/stock/inks">Inks</a>
+                    <a class="dropdown-item" href="/stock/others">Other</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown" >
+
+            <a class="nav-link fw-bold py-1 px-3 nav-link dropdown-toggle"  sec:authorize="isAuthenticated()" href="/users" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                My profile
+            </a>
+            <div id="navbarDropdown2" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/users/edit">Edit profile</a>
+                <form th:action ="@{/users/logout}" th:method  ="POST">
+                <input class="dropdown-item btn btn-link" sec:authorize="isAuthenticated()" type="submit" value="Logout">
+                </form>
+
+            </div>
+            </li>
+
+
+
+        </nav>
+    </div>
+</header>

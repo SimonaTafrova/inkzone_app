@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100" data-bs-theme="auto"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+
+<head th:replace="~{fragments/head}"> </head>
+
+
+<body id="body" class="d-flex h-100 text-center text-bg-dark">
+
+
+
+
+<div class="container-fluid d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header th:replace="~{fragments/navigation}"></header>
+
+  <main class="px-3" >
+    <input id="userId" type="hidden" th:value="${userId}">
+    <input id="loggedUser" type="hidden" th:value="${loggedUser}">
+    <div class="container" style="margin-top: 100px;">
+  
+      <div class="left">
+        <div class="calendar">
+          <div class="month">
+            <i class="fas fa-angle-left prev" ><</i>
+            <div class="date" id="topdate">december 2015</div>
+            <i class="fas fa-angle-right next">></i>
+          </div>
+          <div class="weekdays">
+           
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+            <div>Sun</div>
+          </div>
+          <div class="days"></div>
+          <div class="goto-today">
+            <div class="goto">
+              <input type="text" placeholder="mm/yyyy" class="date-input" />
+              <button class="goto-btn">Go</button>
+            </div>
+            <button class="today-btn">Today</button>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="today-date">
+          <div class="event-day">wed</div>
+          <div class="event-date">12th december 2022</div>
+        </div>
+        <div class="events"></div>
+        <div class="add-event-wrapper">
+          <div class="add-event-header">
+            <div class="title">Add Event</div>
+            <i class="fas fa-times close"></i>
+          </div>
+          <div class="add-event-body">
+            <form id="addEventForm" action="/calendar/add" method="post">
+            <div class="add-event-input">
+              <input type="text" placeholder="Event Name" class="event-name" />
+            </div>
+            <div class="add-event-input">
+              <input
+                type="text"
+                placeholder="Event Time From"
+                class="event-time-from"
+              />
+            </div>
+            </form>
+            
+          </div>
+          <div class="add-event-footer">
+            <button class="add-event-btn">Add Event</button>
+          </div>
+        </div>
+      </div>
+      <button class="add-event">
+        <i class="fas fa-plus">+</i>
+      </button>
+    </div>
+
+  </main>
+
+  <footer th:replace="~{fragments/footer}"></footer>
+
+</div>
+<link rel="stylesheet" href="/css/calendar.css">
+<script src="/js/scriptCalendar.js"></script>
+
+
+    </body>
+</html>

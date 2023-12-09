@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100" data-bs-theme="auto"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+
+<head th:replace="~{fragments/head}"> </head>
+
+
+<body class="d-flex h-100 text-center text-bg-dark">
+
+
+
+
+<div class="container-fluid d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header th:replace="~{fragments/navigation}"></header>
+        <main class="px-3">
+
+    
+
+            <div class="container" style="background-color: transparent;">
+              
+
+
+
+                    <div class="stock-header" style="font-size: 30px; color: black; margin: 50px;">Tasks</div>
+                    <table class="table table-bordered table-dark " style="margin-top: 100px;">
+                        <thead>
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Message</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <tr>
+                                <td th:if="${noTasks}" colspan="3">No new messages</td>
+                            </tr>
+                            <tr th:unless="${noTasks}" th:each="task: ${tasks}">
+                                <td th:text="${task.getDate()}">01.01.2020</td>
+                                <td th:text="${task.getContent()}">There are no items you need to purchase today!</td>
+
+                                <td>
+                                    <form th:action="@{/tasks/delete/{id}(id=${task.getId()})}" th:method="delete">
+                                    <button name="deleteBtn" id="deleteBtn" type="submit" class="btn btn-outline-light">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+
+                            
+                        </tbody>
+
+                    </table>
+
+                
+                
+            </div>
+
+
+
+
+
+             
+            
+        </main>
+    <footer th:replace="~{fragments/footer}"></footer>
+
+
+</div>
+
+<script src="/js/task.js"></script>
+
+</body>
+
+</html>

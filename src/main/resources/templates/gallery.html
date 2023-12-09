@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" class="h-100" data-bs-theme="auto">
+<head th:replace="~{fragments/head}"> </head>
+  <body class="d-flex h-100 text-center text-bg-dark">
+
+    
+    <div class="container-fluid d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header th:replace="~{fragments/navigation}"></header>
+
+  <main class="px-3">
+      <input type="hidden" name="userId" id="userId" th:value="${userId}">
+      <h3 th:text="${isInvalid}"></h3>
+      <button id="addItem" type="button" class="btn btn-primary" style="background-color: #1b1e21;opacity: 90%;" data-bs-toggle="modal" data-bs-target="#addPictureModal">
+          Add a photo
+      </button>
+    <div class="container" id="pictureContainer">
+
+        <div class="portfolio-item row">
+           <div  th:each="picture: ${pictures}"  class="item selfie col-lg-4 col-md-4 col-6 col-sm">
+              <a th:href="@{/gallery/{id}(id=${picture.id})}" class="fancylight popup-btn" data-fancybox-group="light">
+              <img class="img-fluid" style="max-height: 400px; max-width: 300px" th:src='${picture.url}' alt="">
+              </a>
+           </div>
+
+          
+    
+        </div>
+     </div>
+     
+   
+
+  </main>
+
+        <footer th:replace="~{fragments/footer}"></footer>
+
+</div>
+
+    <div class="modal fade" id="addPictureModal" tabindex="-1" role="dialog" aria-labelledby="addPictureModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addPictureModalTitle">Edit item</h5>
+                </div>
+                <div class="modal-body">
+
+                    <form  th:action="@{/gallery/add}" th:method="post" enctype="multipart/form-data" >
+                        <input type="file" name="image">
+                       <div>
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" class="form-control" th:field="${pictureAddBindingModel.description}"  ></textarea>
+                         </div>
+                        <div>
+                            <label for="materials">Used Materials</label>
+                            <select  name="selected_nodes" id="materials" multiple="multiple">
+
+                                <option style="text-decoration-color: black" th:each="item: ${items}" th:value="${item.name}" th:text="${item.name}"></option>
+
+                            </select>
+
+                        </div>
+
+                        <div>
+                            <button id="closeEditModal" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="save">Save changes</button>
+                        </div>
+                    </form>
+
+
+
+
+                    <div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        new MultiSelectTag('materials')
+
+    </script>
+
+
+    </body>
+</html>
+

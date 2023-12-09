@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en" class="h-100" data-bs-theme="auto" xmlns="http://www.w3.org/1999/html">
+<head th:replace="~{fragments/head}"> </head>
+<body class="d-flex h-100 text-center text-bg-dark">
+
+
+<div class="container-fluid d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header th:replace="~{fragments/navigation}"></header>
+
+    <main class="px-3">
+
+        <div class="container" id="editContainer" style="background-color: #1b1e21;opacity: 90%; margin-top: 100px;margin-left: 100px; margin-right: 100px">
+            <h1 style="padding-top: 30px">Edit Profile</h1>
+            <h4 th:text="${userFullName}"></h4>
+            <hr>
+            <div class="row">
+                <!-- left column -->
+
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <img style="max-height: 400px; max-width: 300px" th:src="${userViewModel.getProfilePicture()}" class="avatar img-circle" alt="avatar">
+                        <h6>Upload a different photo...</h6>
+
+                        <form action="#" th:action="@{/users/picture/upload}" th:method="post" enctype="multipart/form-data" >
+                            <input type="file" name="image">
+                            <input type="submit" value="submit">
+                        </form>
+
+                    </div>
+                    <hr>
+                    <!-- Button trigger modal -->
+
+
+                    <!-- Modal -->
+
+                </div>
+
+
+                <!-- edit form column -->
+                <div class="col-md-8 personal-info">
+
+                    <h3>Personal info</h3>
+
+
+
+                    <form class="mx-auto bg-blur rounded align-content-md-center" th:object="${userViewModel}" role="form">
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label  ">First name:</label>
+
+                            <div class="col-lg-12">
+                                <input class="form-control" type="text" th:value="*{firstName}" value="first name" disabled>
+                            </div>
+                            <button id="editFirstNameBtn" type="button" class="btn btn-primary" style="background-color: #1b1e21;opacity: 90%;" data-bs-toggle="modal" data-bs-target="#editFirstNameModal">
+                                Edit first name
+                            </button>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Last name:</label>
+                            <div class="col-lg-12">
+                                <input class="form-control" type="text" th:value="*{lastName}" value="last name" disabled>
+                            </div>
+
+                                <button id="editLastNameBtn" type="button" class="btn btn-primary " style="background-color: #1b1e21;opacity: 90%;" data-bs-toggle="modal" data-bs-target="#editLastNameModal">
+                                Edit last name
+                            </button>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Email:</label>
+                            <div class="col-lg-12">
+                                <input class="form-control" type="text" th:value="*{email}" value="email" disabled>
+                            </div>
+                            <button id="editEmailBtn" type="button" class="btn btn-primary" style="background-color: #1b1e21;opacity: 90%;" data-bs-toggle="modal" data-bs-target="#editEmailModal">
+                                Edit email
+                            </button>
+                        </div>
+
+                        <hr>
+
+                        <button id="editPasswordBtn" type="button" class="btn btn-primary" style="background-color: #1b1e21;opacity: 90%;" data-bs-toggle="modal" data-bs-target="#editPasswordModal">
+                            Edit password
+                        </button>
+
+                    </form>
+
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+    </main>
+
+
+
+    <div class="modal fade" id="editFirstNameModal" tabindex="-1" role="dialog" aria-labelledby="editFirstNameModalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editFirstName">Edit profile details</h5>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation" novalidate th:action="@{/users/edit/firstName}" th:method="post">
+                        <div class="form-group">
+                            <label for="newFirstName">Enter first name</label>
+                            <input type="text"  name="newFirstName" class="form-control" id="newFirstName" aria-describedby="emailHelp" placeholder="First name" required minlength="3" maxlength="20">
+                            <div class="invalid-feedback">
+                                First name length must be between 3 and 20 characters!
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstNameConfirmPassword">Password</label>
+                            <input type="password" name="firstNameConfirmPassword" class="form-control" id="firstNameConfirmPassword" placeholder="Password" required minlength="5" maxlength="20">
+                            <div class="invalid-feedback">
+                                Please enter a valid password!
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="editLastNameModal" tabindex="-1" role="dialog" aria-labelledby="editLastNameModalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editLastName">Edit profile details</h5>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation" novalidate th:action="@{/users/edit/lastName}" th:method="post">
+                        <div class="form-group">
+                            <label for="newLastName">Enter last name </label>
+                            <input type="text"  name="newLastName" class="form-control" id="newLastName"  placeholder="Last name" required minlength="5" maxlength="50">
+                            <div class="invalid-feedback">
+                                Last name length must be between 5 and 50 characters!
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastNameConfirmPassword">Password</label>
+                            <input type="password" name="lastNameConfirmPassword" class="form-control" id="lastNameConfirmPassword" placeholder="Password" required minlength="5" maxlength="20">
+                            <div class="invalid-feedback">
+                                Please enter a valid password!
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="editEmailModal" tabindex="-1" role="dialog" aria-labelledby="editEmailModalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editEmail">Edit profile details</h5>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation" novalidate th:action="@{/users/edit/email}" th:method="post">
+                        <div class="form-group">
+                            <label for="newEmail">Enter email address</label>
+                            <input type="email"  name="newEmail" class="form-control" id="newEmail" aria-describedby="emailHelp" placeholder="Email" required>
+                            <div class="invalid-feedback">
+                                Please enter a valid email address!
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailConfirmPassword">Password</label>
+                            <input type="password" name="emailConfirmPassword" class="form-control" id="emailConfirmPassword" placeholder="Password" required>
+                            <div class="invalid-feedback">
+                                Please enter a valid password!
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="editPasswordModal" tabindex="-1" role="dialog" aria-labelledby="editPasswordModalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editPassword">Edit profile details</h5>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation" novalidate th:action="@{/users/edit/password}" th:method="post">
+                        <div class="form-group">
+                            <label for="newPassword">Enter new password</label>
+                            <input type="password"  name="newPassword" class="form-control" id="newPassword" onkeyup="check()"  placeholder="New Password"  required minlength="5" maxlength="20">
+                            <div class="invalid-feedback">
+                                Password length must be between 5 and 20 characters!
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPasswordConfirm">Password</label>
+                            <input type="password" name="newPasswordConfirm" class="form-control" id="newPasswordConfirm" onkeyup="check()" placeholder="Confirm New Password" required minlength="5" maxlength="20">
+                            <div class="invalid-feedback">
+                                Password length must be between 5 and 20 characters!
+                            </div>
+                            <span id='message'></span>
+                        </div>
+                        <div>
+                        <label for="OldPasswordConfirm">Please fill in your old password to confirm changes</label>
+
+                        <input type="password" class="form-control" id="OldPasswordConfirm" name="OldPasswordConfirm" placeholder="Current Password"  required minlength="5" maxlength="20"/>
+                            <div class="invalid-feedback">
+                                Password length must be between 5 and 20 characters!
+                            </div>
+
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <footer th:replace="~{fragments/footer}"></footer>
+
+</div>
+
+
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+
+    var check = function() {
+        if (document.getElementById('newPassword').value ===
+            document.getElementById('newPasswordConfirm').value) {
+            document.getElementById('message').style.color = 'green';
+            document.getElementById('message').innerHTML = 'Passwords match!';
+        } else {
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'Passwords are not matching!';
+        }
+    }
+</script>
+<link rel="stylesheet" href="/css/modal.css">
+
+
+</body>
+
+</html>
+

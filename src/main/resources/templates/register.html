@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" class="h-100" data-bs-theme="auto">
+
+<head th:replace = "~{fragments/head}"></head>
+
+<body class="d-flex h-100 text-center text-bg-dark">
+
+
+
+  <div class="container-fluid d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header th:replace = "~{fragments/navigation}"></header>
+
+    <main class="px-3">
+        <section class="vh-100 gradient-custom">
+            <div class="container py-5 h-100">
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                  <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+          
+                      <div class="mb-md-5 mt-md-4 pb-5">
+          
+                        <h2 class="fw-bold mb-5 text-uppercase ">Register</h2>
+                        
+                    
+                        <form th:action="@{/users/register}" th:method="post" class="registration-form"  th:object="${userRegisterBindingModel}">
+                    
+                            <div class="form-group">
+                                <div class="label-holder textCol d-flex justify-content-center">
+                                    <label for="firstName" class="h4 mb-2">First name</label>
+                                </div>
+                    
+                                <input type="text"  th:field="*{firstName}" th:value="*{firstName}" class="form-control" id="firstName" name="firstName"  required minlength="3" maxlength="20"/>
+                                <small th:if="${#fields.hasErrors('firstName')}" class="text-danger">Username length must be between 3 and 20 characters</small>
+                            </div>
+                            <div class="form-group">
+                                <div class="label-holder textCol d-flex justify-content-center">
+                                    <label for="lastName" class="h4 mb-2">Last name</label>
+                                </div>
+                                <input type="text" th:field="*{lastName}"  th:value="*{lastName}" class="form-control" id="lastName" name="lastName" required minlength="3" maxlength="50"/>
+                                <small th:if="${#fields.hasErrors('lastName')}" class="text-danger">Last name length must be between 3 and 50 characters</small>
+                            </div>
+                    
+                            <div class="form-group">
+                                <div class="label-holder textCol d-flex justify-content-center">
+                                    <label for="email" class="h4 mb-2">Email</label>
+                                </div>
+                                <input type="email" th:field="*{email}" th:value="*{email}" class="form-control" id="email" name="email" required/>
+                                <small th:if="${#fields.hasErrors('email')}" class="text-danger">Invalid email format</small>
+                            </div>
+                    
+                            <div class="form-group">
+                                <div class="label-holder textCol d-flex justify-content-center">
+                                    <label for="password" class="h4 mb-2">Password</label>
+                                </div>
+                                <input type="password" th:field="*{password}"  th:value="*{password}" class="form-control" id="password" name="password" onkeyup="check()"  required minlength="5" maxlength="20"/>
+                                <small th:if="${#fields.hasErrors('password')}" class="text-danger">Password length must be between 5 and 20 characters</small>
+                                <small th:if="${mismatch}" class="text-danger">Passwords should match!</small>
+                            </div>
+                    
+                            <div class="form-group">
+                                <div class="label-holder textCol d-flex justify-content-center">
+                                    <label for="confirmPassword" class="h4 mb-2">Confirm Password</label>
+                                </div>
+                                <input type="password" th:field="*{confirmPassword}" th:value="*{confirmPassword}" class="form-control" id="confirmPassword" onkeyup="check()" name="confirmPassword"  required minlength="5" maxlength="20"/>
+                                <small th:if="${#fields.hasErrors('confirmPassword')}" class="text-danger">Confirm password length must be between 5 and 20 characters</small>
+                                <span id='message'></span>
+                            </div>
+
+
+                    
+                            <div class="button-holder d-flex justify-content-center" style="margin: 20px;">
+                                <button type="submit" class="btn btn-warning  mb-3" value="Register">Register</button>
+                            </div>
+                    
+                        </form>
+                        
+                      </div>
+          
+
+          
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+      
+    </main>
+
+      <footer th:replace="~{fragments/footer}"></footer>
+  </div>
+
+<script>
+    var check = function() {
+        if (document.getElementById('password').value ===
+            document.getElementById('confirmPassword').value) {
+            document.getElementById('message').style.color = 'green';
+            document.getElementById('message').innerHTML = 'Passwords match!';
+        } else {
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'Passwords are not matching!';
+        }
+    }
+</script>
+</body>
+
+</html>

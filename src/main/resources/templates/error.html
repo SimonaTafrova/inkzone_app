@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100" data-bs-theme="auto"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+
+<head th:replace="~{fragments/head}"> </head>
+
+
+<body class="d-flex h-100 text-center text-bg-dark">
+
+
+
+
+<div class="container-fluid d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header th:replace="~{fragments/navigation}"></header>
+
+    <main class="px-3">
+        <section class="vh-100 gradient-custom">
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                            <div class="card-body p-5 text-center">
+
+                                <div class="mb-md-5 mt-md-4 pb-5">
+                                  <h1 th:unless="${msg}">Ooopps...Something went wrong</h1>
+                                    <h1 th:text="${msg}"></h1>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+</div>
+
+<footer th:replace="~{fragments/footer}"></footer>
+
+
+</body>
+
+</html>

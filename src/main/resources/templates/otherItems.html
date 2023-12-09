@@ -1,0 +1,147 @@
+<!doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100" data-bs-theme="auto"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragments/head}"></head>
+<body  class="d-flex h-100 text-center text-bg-dark">
+
+
+<div class="container-fluid d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header th:replace="~{fragments/navigation}">
+
+
+    </header>
+
+
+    <main class="px-3">
+
+
+        <div class="container-fluid" style="background-color:transparent; margin-top: 100px">
+
+
+
+
+
+
+            <div class="stock-header" id="itemCategory" style="font-size: 30px; color: black;">Others</div>
+            <div class="right">
+                <button id="addItem" type="button" class="btn btn-primary" style="background-color: #1b1e21;opacity: 90%;" data-bs-toggle="modal" data-bs-target="#addItemModal">
+                    Add item
+                </button>
+                <button class="btn btn-primary" style="background-color: #1b1e21;opacity: 90%;" onclick="sortTable()">Sort</button>
+            </div>
+
+            <table id="itemTable" class="display table table-bordered table-dark " style="margin-top: 30px;">
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Min. quantity</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody id="table-body">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+
+
+
+
+
+    </main>
+    <footer th:replace="~{fragments/footer}"></footer>
+
+    <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="addItemModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addItemModalTitle">Add new item</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form id="itemForm" th:action="@{/api/stock}" th:method="post">
+                        <div class="form-group">
+
+
+                            <label for="name">Item name</label>
+                            <input type="text" id="name" name="name" class="form-control" value="" >
+                            <label for="quantity">Quantity</label>
+                            <input type="text" id="quantity" name="quantity" class="form-control" value="" >
+
+                            <label for="minQuantity">Min. quantity</label>
+                            <input type="text" id="minQuantity" name="minQuantity" class="form-control" value="" >
+                            <label for="category">Select a category</label>
+                            <select class="form-control" id="category" name="category">
+                                <option th:each="category: ${T(com.example.inkzone.model.enums.ItemCategoryEnum).values()}" th:value="${category}" th:text="${category}" th:selected="${category.name()} == OTHER"></option>
+                            </select>
+
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editItemModal" tabindex="-1" role="dialog" aria-labelledby="editItemModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editItemModalTitle">Edit item</h5>
+                </div>
+                <div class="modal-body">
+
+                    <form id="editItemForm" action="/" th:method="put">
+                        <div class="form-group">
+
+
+                            <label for="editName">Item name</label>
+                            <input type="text" id="editName" name="name" class="form-control" value="" >
+                            <label for="editQuantity">Quantity</label>
+                            <input type="text" id="editQuantity" name="quantity" class="form-control" value="" >
+
+                            <label for="editMinQuantity">Min. quantity</label>
+                            <input type="text" id="editMinQuantity" name="minQuantity" class="form-control" value="" >
+                            <label for="editCategory">Select a category</label>
+                            <select class="form-control" id="editCategory" name="category">
+                                <option th:each="category: ${T(com.example.inkzone.model.enums.ItemCategoryEnum).values()}" th:value="${category}" th:text="${category}" th:selected="${category.name()} == OTHER"></option>
+                            </select>
+
+                            <button id="closeEditModal" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<script src="/js/stock.js"></script>
+
+
+
+
+
+</body>
+
+
+
+</html>
