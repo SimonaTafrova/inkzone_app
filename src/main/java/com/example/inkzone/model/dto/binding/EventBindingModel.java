@@ -1,8 +1,12 @@
 package com.example.inkzone.model.dto.binding;
 
+import javax.validation.constraints.NotNull;
+
 public class EventBindingModel {
 
+    @NotNull
     private String title;
+    @NotNull
     private String time;
     private String userName;
 

@@ -1,6 +1,6 @@
 package com.example.inkzone.web;
 
-import com.example.inkzone.model.dto.view.UserViewModel;
+
 import com.example.inkzone.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

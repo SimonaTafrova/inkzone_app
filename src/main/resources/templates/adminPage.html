@@ -33,7 +33,6 @@
                     <th scope="col">Email</th>
                     <th scope="col">First name</th>
                     <th scope="col">Last name</th>
-                    <th scope="col">Last logged in</th>
                     <th scope="col">Roles</th>
                     <th scope="col">Action</th>
 
@@ -48,7 +47,7 @@
                     <td th:text="${u.email}">7RL</td>
                     <td th:text="${u.firstName}">18</td>
                     <td th:text="${u.lastName}">10</td>
-                    <td th:text="${u.lastLoggedIn}"></td>
+
                     <td>
                         <ul>
                             <li th:each="role:${u.getRoles()}" th:text="${role}"></li>

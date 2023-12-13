@@ -8,5 +8,5 @@ public interface FileUploadService {
 
     String uploadFile(MultipartFile multipartFile) throws IOException;
 
-    public void delete(String url) throws IOException;
+    void delete(String url) throws IOException;
 }

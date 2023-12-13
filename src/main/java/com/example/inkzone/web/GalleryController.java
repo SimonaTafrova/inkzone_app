@@ -5,7 +5,6 @@ import com.example.inkzone.model.dto.view.ItemViewModel;
 import com.example.inkzone.model.dto.view.PictureGalleryViewModel;
 import com.example.inkzone.model.enums.ItemCategoryEnum;
 import com.example.inkzone.service.FileUploadService;
-import com.example.inkzone.service.ItemService;
 import com.example.inkzone.service.PictureService;
 import com.example.inkzone.service.UserService;
 import org.springframework.stereotype.Controller;

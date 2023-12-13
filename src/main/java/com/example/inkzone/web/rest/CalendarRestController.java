@@ -1,9 +1,11 @@
 package com.example.inkzone.web.rest;
 
 import com.example.inkzone.model.dto.binding.CalendarDayBindingModel;
-import com.example.inkzone.model.dto.binding.ItemAddBindingModel;
+
+
 import com.example.inkzone.model.dto.view.CalendarDayViewModel;
-import com.example.inkzone.model.dto.view.ItemViewModel;
+
+
 import com.example.inkzone.service.CalendarService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.security.Principal;
-import java.util.ArrayList;
+
 import java.util.List;
 
 @RestController

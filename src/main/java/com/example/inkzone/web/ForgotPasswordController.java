@@ -4,7 +4,6 @@ import com.example.inkzone.model.dto.view.UserViewModel;
 import com.example.inkzone.service.EmailService;
 import com.example.inkzone.service.UserService;
 import net.bytebuddy.utility.RandomString;
-import org.aspectj.apache.bcel.classfile.Utility;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

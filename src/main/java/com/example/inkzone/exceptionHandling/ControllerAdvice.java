@@ -4,9 +4,7 @@
 
 package com.example.inkzone.exceptionHandling;
 
-import com.example.inkzone.service.Exception;
 import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;

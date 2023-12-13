@@ -1,6 +1,8 @@
 package com.example.inkzone.model.entity;
 
 
+import com.example.inkzone.service.CalendarService;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -14,6 +16,7 @@ public class Event extends BaseEntity{
     private String time;
     @ManyToOne
     private UserEntity creator;
+
 
 
 

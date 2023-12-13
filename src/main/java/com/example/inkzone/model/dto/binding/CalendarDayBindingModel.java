@@ -1,10 +1,9 @@
 package com.example.inkzone.model.dto.binding;
 
-import com.example.inkzone.model.dto.view.EventViewModel;
+
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
 
 public class CalendarDayBindingModel {

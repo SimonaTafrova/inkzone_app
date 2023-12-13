@@ -3,7 +3,6 @@ package com.example.inkzone.config;
 
 import com.example.inkzone.repository.UserRepository;
 import com.example.inkzone.service.ApplicationUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

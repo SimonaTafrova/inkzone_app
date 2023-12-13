@@ -1,12 +1,4 @@
-
-
-
-
-
-
 const tableBody = document.getElementById('table-body');
-
-
 const csrfHeaderName = document.head.querySelector('[name="_csrf_header"]').content;
 const csrfHeaderValue = document.head.querySelector('[name="_csrf"]').content;
 const itemForm = document.getElementById('itemForm');
@@ -52,7 +44,6 @@ async function handleItemSubmit(event) {
 
 async function handleEditItemSubmit(event){
     event.preventDefault();
-    console.log("Edit")
     const form = event.currentTarget;
     const url = form.action;
     const formData = new FormData(form);
@@ -105,7 +96,6 @@ async function postFormDataAsJson({url, formData, method}) {
             category: plainFormData.category
         }
         const formDataAsJSONString = JSON.stringify(newItem);
-        console.log(formDataAsJSONString);
 
         const fetchOptions = {
             method: method,
@@ -117,7 +107,6 @@ async function postFormDataAsJson({url, formData, method}) {
             body: formDataAsJSONString
         }
 
-        console.log(fetchOptions)
 
         const response = await fetch(url, fetchOptions);
 
@@ -193,8 +182,8 @@ async function postFormDataAsJson({url, formData, method}) {
 
         tableBody.appendChild(newRow);
 
-        console.log(csrfHeaderValue + csrfHeaderValue)
-        deleteBtn.addEventListener('click', ()  => {
+        deleteBtn.addEventListener('click', (e)  => {
+            e.preventDefault();
             if(confirm("Are you sure you want to delete this item?")) {
                 tableBody.removeChild(newRow)
                 fetch(`http://localhost:8080/api/stock/${item.id}`, {

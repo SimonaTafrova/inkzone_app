@@ -3,7 +3,6 @@ package com.example.inkzone.service.impl;
 import com.example.inkzone.model.dto.binding.PictureAddBindingModel;
 import com.example.inkzone.model.dto.view.ItemViewModel;
 import com.example.inkzone.model.dto.view.PictureGalleryViewModel;
-import com.example.inkzone.model.entity.Item;
 import com.example.inkzone.model.entity.Picture;
 import com.example.inkzone.model.entity.UserEntity;
 import com.example.inkzone.model.enums.ItemCategoryEnum;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
+
 
 @Service
 public class PictureServiceImpl implements PictureService {
@@ -49,7 +48,7 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     public void savePicture(PictureAddBindingModel pictureAddBindingModel, String name) {
-        UserEntity user = userService.getCreator(name);
+       UserEntity user = userService.getCreator(name);
         if(user == null){
             throw new RuntimeException("Session expired. Please log in again!");
         }
@@ -57,10 +56,10 @@ public class PictureServiceImpl implements PictureService {
         picture.setCreator(user);
         Set<String> items = new HashSet<>();
         pictureAddBindingModel.getMaterialsUsed()
-                        .forEach(m -> {
-                            String item = itemService.getAndUpdateItem(m);
-                            items.add(item);
-                        });
+                .forEach(m -> {
+                    String item = itemService.getAndUpdateItem(m);
+                    items.add(item);
+                });
         picture.setMaterialsUsed(items);
 
         pictureRepository.save(picture);
@@ -91,13 +90,6 @@ public class PictureServiceImpl implements PictureService {
         return pictureGalleryViewModel;
     }
 
-    @Override
-    public void getAllPicturesOfUserAndDelete(String email) {
-        List<Picture> picturesToDelete = pictureRepository.getAllByCreator_Email(email).orElse(null);
-        if(picturesToDelete != null){
-            pictureRepository.deleteAll(picturesToDelete);
-        }
-    }
 
     @Override
     public List<ItemViewModel> getAllItems(ItemCategoryEnum itemCategoryEnum) {

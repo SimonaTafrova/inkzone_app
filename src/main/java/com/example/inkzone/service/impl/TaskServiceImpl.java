@@ -77,13 +77,13 @@ public class TaskServiceImpl implements TaskService {
         sb.append("The following items need to be ordered:");
         sb.append(System.lineSeparator());
         lowItems.forEach(i -> {
-            sb.append(i.getName());
+            sb.append("*").append(i.getName());
             sb.append(System.lineSeparator());
         });
         return sb.toString();
     }
 
-    @Scheduled(cron = "0 03 15 * * ?")
+    @Scheduled(cron = "0 00 19 * * ?")
     public void sendTaskEmail() {
         String [] userEmails = userService.getAllAdminsAndModerators();
         Task dailyTask = createTask();

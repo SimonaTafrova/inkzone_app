@@ -11,4 +11,6 @@ public interface CalendarService {
     void deleteEvent(Long dayId, Long eventId);
 
     CalendarDayViewModel addNewEvent(CalendarDayBindingModel calendarDayBindingModel, String email);
+
+
 }

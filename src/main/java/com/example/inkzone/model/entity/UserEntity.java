@@ -18,8 +18,6 @@ public class UserEntity extends BaseEntity{
     private String password;
     @Column
     private String profilePicture;
-    @Column
-    private String lastLoggedIn;
     @Column(name = "reset_password_token")
     private String resetPasswordToken;
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
@@ -27,8 +25,6 @@ public class UserEntity extends BaseEntity{
             joinColumns = { @JoinColumn(name = "user_id") },
             inverseJoinColumns = { @JoinColumn(name = "role_id") })
     private Set<Role> roles;
-    @OneToMany
-    private Set<Picture> pictures;
 
     public UserEntity() {
     }
@@ -82,14 +78,6 @@ public class UserEntity extends BaseEntity{
         this.profilePicture = profilePicture;
     }
 
-    public Set<Picture> getPictures() {
-        return pictures;
-    }
-
-    public void setPictures(Set<Picture> pictures) {
-        this.pictures = pictures;
-    }
-
     public String getResetPasswordToken() {
         return resetPasswordToken;
     }
@@ -98,11 +86,4 @@ public class UserEntity extends BaseEntity{
         this.resetPasswordToken = resetPasswordToken;
     }
 
-    public String getLastLoggedIn() {
-        return lastLoggedIn;
-    }
-
-    public void setLastLoggedIn(String lastLoggedIn) {
-        this.lastLoggedIn = lastLoggedIn;
-    }
 }

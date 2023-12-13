@@ -8,7 +8,7 @@ import java.util.List;
 public interface TaskService {
     List<TaskViewModel> getAllTasks();
 
-    public Task createTask();
+    Task createTask();
 
     void deleteTask(Long id);
 }

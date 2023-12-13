@@ -41,14 +41,13 @@ public interface UserService {
 
     void removeModeration(Long id);
 
-    String getAdminEmail();
 
     String[] getAllAdminsAndModerators();
 
-    public void updatePassword(UserViewModel user, String newPassword);
+   void updatePassword(UserViewModel user, String newPassword);
 
-    public UserViewModel getByResetPasswordToken(String token);
-    public void updateResetPasswordToken(String token, String email);
+     UserViewModel getByResetPasswordToken(String token);
+    void updateResetPasswordToken(String token, String email);
 
-    void updateLastLoggedIn(String email, String latestLoggedInDate);
+
 }

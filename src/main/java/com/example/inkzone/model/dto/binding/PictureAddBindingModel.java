@@ -1,15 +1,8 @@
 package com.example.inkzone.model.dto.binding;
 
-import com.example.inkzone.model.entity.Item;
-import com.example.inkzone.model.entity.UserEntity;
-
-import javax.persistence.Column;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.List;
-import java.util.Set;
 
 public class PictureAddBindingModel {
 

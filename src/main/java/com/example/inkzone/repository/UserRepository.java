@@ -3,8 +3,6 @@ package com.example.inkzone.repository;
 import com.example.inkzone.model.entity.Role;
 import com.example.inkzone.model.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

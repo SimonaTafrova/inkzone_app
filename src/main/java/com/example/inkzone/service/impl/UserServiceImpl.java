@@ -26,21 +26,21 @@ public class UserServiceImpl implements UserService {
     private final ModelMapper modelMapper;
     private final RoleService roleService;
     private final EmailService emailService;
-    private final PictureDeleteService pictureService;
+    private final DeleteServiceImpl deleteService;
 
     public UserServiceImpl(UserRepository userRepository,
                            PasswordEncoder passwordEncoder,
                            ModelMapper modelMapper,
                            RoleService roleService,
                            EmailService emailService,
-                           PictureDeleteService pictureService) {
+                           DeleteServiceImpl deleteService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.modelMapper = modelMapper;
         this.roleService = roleService;
         this.emailService = emailService;
 
-        this.pictureService = pictureService;
+        this.deleteService = deleteService;
     }
 
     @Override
@@ -245,7 +245,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Long id) {
         UserEntity userEntity = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User was not found!"));
-        pictureService.getAllPicturesOfUserAndDelete(userEntity.getEmail());
+        deleteService.getAllPicturesOfUserAndDelete(userEntity.getEmail());
+        deleteService.deleteEvents(userEntity);
         userRepository.delete(userEntity);
     }
 
@@ -268,12 +269,6 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-    @Override
-    public String getAdminEmail() {
-        Role adminRole = roleService.getRoleByName(RoleEnum.ADMIN);
-        return userRepository.findUserEntityByRolesContains(adminRole).getEmail();
-
-    }
 
     public String [] getAllAdminsAndModerators(){
         Role adminRole = roleService.getRoleByName(RoleEnum.ADMIN);
@@ -312,15 +307,6 @@ public class UserServiceImpl implements UserService {
         } else {
             throw new RuntimeException("Could not find a user with with an e-mail:" + email);
         }
-    }
-
-    @Override
-    public void updateLastLoggedIn(String email, String latestLoggedInDate) {
-        UserEntity userEntity = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found!"));
-        userEntity.setLastLoggedIn(latestLoggedInDate);
-        userRepository.save(userEntity);
-
-
     }
 
     public UserViewModel getByResetPasswordToken(String token) {

@@ -1,25 +1,17 @@
 package com.example.inkzone.web.rest;
 
-import com.example.inkzone.exceptionHandling.ErrorApiResponse;
 import com.example.inkzone.model.dto.binding.ItemAddBindingModel;
 import com.example.inkzone.model.dto.view.ItemViewModel;
 import com.example.inkzone.model.enums.ItemCategoryEnum;
 import com.example.inkzone.service.ItemService;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/stock")
